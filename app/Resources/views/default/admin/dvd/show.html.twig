@@ -1,0 +1,56 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Dvd</h1>
+
+    <table>
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ dvd.id }}</td>
+            </tr>
+            <tr>
+                <th>Isan</th>
+                <td>{{ dvd.isan }}</td>
+            </tr>
+            <tr>
+                <th>Title</th>
+                <td>{{ dvd.title }}</td>
+            </tr>
+            <tr>
+                <th>Director</th>
+                <td>{{ dvd.director }}</td>
+            </tr>
+            <tr>
+                <th>Releasedate</th>
+                <td>{% if dvd.releaseDate %}{{ dvd.releaseDate|date('Y-m-d H:i:s') }}{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Duration</th>
+                <td>{% if dvd.duration %}{{ dvd.duration|date('H:i:s') }}{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Summary</th>
+                <td>{{ dvd.summary }}</td>
+            </tr>
+            <tr>
+                <th>Price</th>
+                <td>{{ dvd.price }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('admin_dvd_index') }}">Back to the list</a>
+        </li>
+        <li>
+            <a href="{{ path('admin_dvd_edit', { 'id': dvd.id }) }}">Edit</a>
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Delete">
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>
+{% endblock %}

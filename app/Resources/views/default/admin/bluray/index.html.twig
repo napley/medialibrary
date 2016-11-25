@@ -1,0 +1,51 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Blurays list</h1>
+
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Isan</th>
+                <th>Title</th>
+                <th>Director</th>
+                <th>Releasedate</th>
+                <th>Duration</th>
+                <th>Summary</th>
+                <th>Price</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for bluray in blurays %}
+            <tr>
+                <td><a href="{{ path('admin_bluray_show', { 'id': bluray.id }) }}">{{ bluray.id }}</a></td>
+                <td>{{ bluray.isan }}</td>
+                <td>{{ bluray.title }}</td>
+                <td>{{ bluray.director }}</td>
+                <td>{% if bluray.releaseDate %}{{ bluray.releaseDate|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>{% if bluray.duration %}{{ bluray.duration|date('H:i:s') }}{% endif %}</td>
+                <td>{{ bluray.summary }}</td>
+                <td>{{ bluray.price }}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('admin_bluray_show', { 'id': bluray.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('admin_bluray_edit', { 'id': bluray.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('admin_bluray_new') }}">Create a new bluray</a>
+        </li>
+    </ul>
+{% endblock %}

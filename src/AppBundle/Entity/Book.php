@@ -24,7 +24,7 @@ class Book
     /**
      * @var int
      *
-     * @ORM\Column(name="isbn", type="integer", unique=true)
+     * @ORM\Column(name="isbn", type="bigint", unique=true, options={"unsigned":true})
      */
     private $isbn;
 

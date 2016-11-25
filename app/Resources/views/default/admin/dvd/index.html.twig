@@ -1,0 +1,51 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Dvds list</h1>
+
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Isan</th>
+                <th>Title</th>
+                <th>Director</th>
+                <th>Releasedate</th>
+                <th>Duration</th>
+                <th>Summary</th>
+                <th>Price</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for dvd in dvds %}
+            <tr>
+                <td><a href="{{ path('admin_dvd_show', { 'id': dvd.id }) }}">{{ dvd.id }}</a></td>
+                <td>{{ dvd.isan }}</td>
+                <td>{{ dvd.title }}</td>
+                <td>{{ dvd.director }}</td>
+                <td>{% if dvd.releaseDate %}{{ dvd.releaseDate|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>{% if dvd.duration %}{{ dvd.duration|date('H:i:s') }}{% endif %}</td>
+                <td>{{ dvd.summary }}</td>
+                <td>{{ dvd.price }}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('admin_dvd_show', { 'id': dvd.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('admin_dvd_edit', { 'id': dvd.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('admin_dvd_new') }}">Create a new dvd</a>
+        </li>
+    </ul>
+{% endblock %}

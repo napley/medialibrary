@@ -1,0 +1,56 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Bluray</h1>
+
+    <table>
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ bluray.id }}</td>
+            </tr>
+            <tr>
+                <th>Isan</th>
+                <td>{{ bluray.isan }}</td>
+            </tr>
+            <tr>
+                <th>Title</th>
+                <td>{{ bluray.title }}</td>
+            </tr>
+            <tr>
+                <th>Director</th>
+                <td>{{ bluray.director }}</td>
+            </tr>
+            <tr>
+                <th>Releasedate</th>
+                <td>{% if bluray.releaseDate %}{{ bluray.releaseDate|date('Y-m-d H:i:s') }}{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Duration</th>
+                <td>{% if bluray.duration %}{{ bluray.duration|date('H:i:s') }}{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Summary</th>
+                <td>{{ bluray.summary }}</td>
+            </tr>
+            <tr>
+                <th>Price</th>
+                <td>{{ bluray.price }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('admin_bluray_index') }}">Back to the list</a>
+        </li>
+        <li>
+            <a href="{{ path('admin_bluray_edit', { 'id': bluray.id }) }}">Edit</a>
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Delete">
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>
+{% endblock %}
