@@ -1,0 +1,43 @@
+{% extends 'default/admin.html.twig' %}
+
+{% block contenu %}
+    <h1>Alerts list</h1>
+
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Email</th>
+                <th>Type</th>
+                <th>Keyword</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for alert in alerts %}
+            <tr>
+                <td><a href="{{ path('admin_alert_show', { 'id': alert.id }) }}">{{ alert.id }}</a></td>
+                <td>{{ alert.email }}</td>
+                <td>{{ alert.type }}</td>
+                <td>{{ alert.keyword }}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('admin_alert_show', { 'id': alert.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('admin_alert_edit', { 'id': alert.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('admin_alert_new') }}">Create a new alert</a>
+        </li>
+    </ul>
+{% endblock %}
