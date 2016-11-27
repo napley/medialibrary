@@ -1,0 +1,21 @@
+{% extends 'default/front.html.twig' %}
+
+{% block title %}{{ dvd.title }} - medialibrary{% endblock %}
+
+{% block contenu %}
+    <div class="container">
+        <div class="jumbotron">
+            <h1>{{ dvd.title }}</h1>
+            <p>Isan = {{ dvd.isan }}</p>
+            <p>Director = {{ dvd.director }}</p>
+            <p>Release date = {{ dvd.releaseDate|date('Y-m-d H:i:s') }}</p>
+            <p>Summary = {{ dvd.summary }}
+            <p>Duration = {{ dvd.duration|date('H:i') }}</p>
+            <p>Price = {{ dvd.price }} €</p>
+        </div>
+
+    </div><!-- /.container -->
+{% endblock %}
+
+{% block stylesheets %}
+{% endblock %}

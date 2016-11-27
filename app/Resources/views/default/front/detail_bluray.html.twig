@@ -1,0 +1,21 @@
+{% extends 'default/front.html.twig' %}
+
+{% block title %}{{ bluray.title }} - medialibrary{% endblock %}
+
+{% block contenu %}
+    <div class="container">
+        <div class="jumbotron">
+            <h1>{{ bluray.title }}</h1>
+            <p>Isan = {{ bluray.isan }}</p>
+            <p>Director = {{ bluray.director }}</p>
+            <p>Release date = {{ bluray.releaseDate|date('Y-m-d H:i:s') }}</p>
+            <p>Summary = {{ bluray.summary }}
+            <p>Duration = {{ bluray.duration|date('H:i') }}</p>
+            <p>Price = {{ bluray.price }} €</p>
+        </div>
+
+    </div><!-- /.container -->
+{% endblock %}
+
+{% block stylesheets %}
+{% endblock %}

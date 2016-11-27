@@ -19,6 +19,7 @@ class DvdType extends AbstractType
                 ->add('title')
                 ->add('director')
                 ->add('releaseDate', DateTimeType::class, [
+                    'label' => 'Release date (DD MM YYYY HH:ii)',
                     'date_widget' => 'text'
                 ])
                 ->add('duration')

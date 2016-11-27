@@ -1,0 +1,20 @@
+{% extends 'default/front.html.twig' %}
+
+{% block title %}{{ book.title }} - medialibrary{% endblock %}
+
+{% block contenu %}
+    <div class="container">
+        <div class="jumbotron">
+            <h1>{{ book.title }}</h1>
+            <p>Isbn = {{ book.isbn }}</p>
+            <p>Author = {{ book.author }}</p>
+            <p>Published date = {{ book.publishedDate|date('Y-m-d H:i:s') }}</p>
+            <p>Page number = {{ book.pageNumber }}</p>
+            <p>Price = {{ book.price }} €</p>
+        </div>
+
+    </div><!-- /.container -->
+{% endblock %}
+
+{% block stylesheets %}
+{% endblock %}

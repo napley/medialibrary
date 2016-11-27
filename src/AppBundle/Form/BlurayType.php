@@ -5,6 +5,7 @@ namespace AppBundle\Form;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
 
 class BlurayType extends AbstractType
 {
@@ -13,7 +14,17 @@ class BlurayType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('isan')->add('title')->add('director')->add('releaseDate')->add('duration')->add('summary')->add('price')        ;
+        $builder->add('isan')
+                ->add('title')
+                ->add('director')
+                ->add('releaseDate', DateTimeType::class, [
+                    'label' => 'Release date (DD MM YYYY HH:ii)',
+                    'date_widget' => 'text'
+                ])
+                ->add('duration')
+                ->add('summary')
+                ->add('price')
+                ;
     }
     
     /**
