@@ -26,7 +26,8 @@ class DefaultController extends Controller
         return $this->render('default/front/index.html.twig', [
                     'books' => $books,
                     'dvds' => $dvds,
-                    'blurays' => $blurays
+                    'blurays' => $blurays,
+                    'search' => ''
         ]);
     }
     
@@ -69,17 +70,18 @@ class DefaultController extends Controller
     public function searchAction(Request $request)
     {
         $em = $this->getDoctrine()->getManager();
-        $motCles = $request->request->get('motCles');
-        $arrayMotCles = explode(' ', $motCles);
+        $keywords = $request->request->get('keywords');
+        $arrayKeywords = explode(',', $keywords);
         
-        $books = $em->getRepository('AppBundle:Book')->getbySearch($arrayMotCles);
-        $dvds = $em->getRepository('AppBundle:Dvd')->getbySearch($arrayMotCles);
-        $blurays = $em->getRepository('AppBundle:Bluray')->getbySearch($arrayMotCles);
+        $books = $em->getRepository('AppBundle:Book')->findAllBySearch($arrayKeywords);
+        $dvds = $em->getRepository('AppBundle:Dvd')->findAllBySearch($arrayKeywords);
+        $blurays = $em->getRepository('AppBundle:Bluray')->findAllBySearch($arrayKeywords);
         
         return $this->render('default/front/index.html.twig', [
                     'books' => $books,
                     'dvds' => $dvds,
-                    'blurays' => $blurays
+                    'blurays' => $blurays,
+                    'search' => $keywords
         ]);
     }
     

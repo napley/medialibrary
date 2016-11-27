@@ -10,4 +10,22 @@ namespace AppBundle\Repository;
  */
 class BookRepository extends \Doctrine\ORM\EntityRepository
 {
+    public function findAllBySearch(array $keywords)
+    {
+        $tpl = "(b.isbn LIKE '%{{keyword}}%' OR b.title LIKE '%{{keyword}}%' OR b.author LIKE '%{{keyword}}%')";
+        $arrayWhere = [];
+        
+        foreach ($keywords as $keyword) {
+            $arrayWhere[] = str_replace('{{keyword}}', trim($keyword), $tpl);
+        }
+        
+        return $this->getEntityManager()
+            ->createQuery(
+                'SELECT b'
+                    . ' FROM AppBundle:Book b'
+                    . ' WHERE ' . implode(' AND ', $arrayWhere)
+                    . ' ORDER BY b.id DESC'
+            )
+            ->getResult();
+    }
 }

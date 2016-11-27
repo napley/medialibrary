@@ -10,4 +10,22 @@ namespace AppBundle\Repository;
  */
 class DvdRepository extends \Doctrine\ORM\EntityRepository
 {
+    public function findAllBySearch(array $keywords)
+    {
+        $tpl = "(d.isan LIKE '%{{keyword}}%' OR d.title LIKE '%{{keyword}}%' OR d.director LIKE '%{{keyword}}%')";
+        $arrayWhere = [];
+        
+        foreach ($keywords as $keyword) {
+            $arrayWhere[] = str_replace('{{keyword}}', trim($keyword), $tpl);
+        }
+        
+        return $this->getEntityManager()
+            ->createQuery(
+                'SELECT d'
+                    . ' FROM AppBundle:dvd d'
+                    . ' WHERE ' . implode(' AND ', $arrayWhere)
+                    . ' ORDER BY d.id DESC'
+            )
+            ->getResult();
+    }
 }

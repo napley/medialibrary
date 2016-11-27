@@ -10,4 +10,22 @@ namespace AppBundle\Repository;
  */
 class BlurayRepository extends \Doctrine\ORM\EntityRepository
 {
+    public function findAllBySearch(array $keywords)
+    {
+        $tpl = "(b.isan LIKE '%{{keyword}}%' OR b.title LIKE '%{{keyword}}%' OR b.director LIKE '%{{keyword}}%')";
+        $arrayWhere = [];
+        
+        foreach ($keywords as $keyword) {
+            $arrayWhere[] = str_replace('{{keyword}}', trim($keyword), $tpl);
+        }
+        
+        return $this->getEntityManager()
+            ->createQuery(
+                'SELECT b'
+                    . ' FROM AppBundle:Bluray b'
+                    . ' WHERE ' . implode(' AND ', $arrayWhere)
+                    . ' ORDER BY b.id DESC'
+            )
+            ->getResult();
+    }
 }
