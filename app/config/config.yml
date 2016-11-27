@@ -32,6 +32,14 @@ framework:
     http_method_override: true
     assets: ~
     
+services:
+    article.alert:
+        class: AppBundle\EventListener\ArticleAlert
+        arguments:
+            mailer: "@mailer"            
+        tags:
+            - { name: doctrine.event_listener, event: postPersist }
+            
 # Twig Configuration
 twig:
     debug:            "%kernel.debug%"
@@ -67,7 +75,8 @@ swiftmailer:
     host:      "%mailer_host%"
     username:  "%mailer_user%"
     password:  "%mailer_password%"
-    spool:     { type: memory }
+    encryption:  "%mailer_encryption%"
+    port:      "%mailer_port%"
 
 assetic:
     debug:          '%kernel.debug%'

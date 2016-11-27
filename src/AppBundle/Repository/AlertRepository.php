@@ -10,4 +10,18 @@ namespace AppBundle\Repository;
  */
 class AlertRepository extends \Doctrine\ORM\EntityRepository
 {
+    public function findEmailByAlert($type, $keyword)
+    {
+        
+        return $this->getEntityManager()
+            ->createQuery(
+                "SELECT a.email"
+                    . " FROM AppBundle:alert a"
+                    . " WHERE a.type = '" . $type . "'"
+                    . " AND a.keyword = '" .$keyword . "'"
+                    . " GROUP BY a.email"
+                    . " ORDER BY a.email DESC"
+            )
+            ->getResult();
+    }
 }
