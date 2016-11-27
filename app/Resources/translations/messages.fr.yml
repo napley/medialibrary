@@ -1,6 +1,0 @@
-layout.logged_in_as: 'Connecté en tant que'
-layout.logout: 'Se déconnecter'
-security.login.username: Identifiant
-security.login.password: 'Mot de passe'
-security.login.remember_me: 'Se rappeler de moi'
-security.login.submit: 'Se connecter'
