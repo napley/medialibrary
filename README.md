@@ -15,20 +15,33 @@ Installation
   * Importer le fichier dump qui se situe dans le projet app/medialibrary.sql
 
   * Créer un fichier parameter.yml dans app/config avec tous les paramètres nécessaires : 
+
 parameters:
+
     database_host: 127.0.0.1
+
     database_port: null
+
     database_name: medialibrary
+
     database_user: medialibrary
+
     database_password: %database_password%
+
     secret: %secret%
 
     mailer_transport:  smtp
+
     mailer_auth_mode:  login
+
     mailer_host:       %mailer_host%
+
     mailer_encryption: %mailer_encryption%
+
     mailer_port:       %mailer_port%
+
     mailer_user:       %mailer_user%
+
     mailer_password:   %mailer_password%
 
  
