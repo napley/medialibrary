@@ -27,7 +27,7 @@ class ArticleAlert
             
             foreach ($alerts as $alert) {
                 $message = \Swift_Message::newInstance()
-                    ->setSubject('Hello Email')
+                    ->setSubject('A new book')
                     ->setFrom('postmaster@android-dev.fr')
                    // ->setTo($alert['email'])
                     ->setTo('postmaster@android-dev.fr')
@@ -46,7 +46,7 @@ class ArticleAlert
             
             foreach ($alerts as $alert) {
                 $message = \Swift_Message::newInstance()
-                    ->setSubject('Hello Email')
+                    ->setSubject('A new dvd')
                     ->setFrom('postmaster@android-dev.fr')
                    // ->setTo($alert['email'])
                     ->setTo('postmaster@android-dev.fr')
@@ -63,7 +63,7 @@ class ArticleAlert
             
             foreach ($alerts as $alert) {
                 $message = \Swift_Message::newInstance()
-                    ->setSubject('Hello Email')
+                    ->setSubject('A new bluray')
                     ->setFrom('postmaster@android-dev.fr')
                    // ->setTo($alert['email'])
                     ->setTo('postmaster@android-dev.fr')
